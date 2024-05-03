@@ -61,7 +61,7 @@ class PostService:
         directory.mkdir(parents=True, exist_ok=True)
 
         try:
-            # Temporarily remove the contextlib redirect to see the errors
+            # Temporarily remove the context lib redirect to see the errors
             L = instaloader.Instaloader()
 
             # Load the post using the shortcode
