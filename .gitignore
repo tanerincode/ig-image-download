@@ -1,0 +1,7 @@
+/downloads/images/
+/downloads/posts/
+/__pycache__
+__pycache__
+.env
+venv/
+.venv
