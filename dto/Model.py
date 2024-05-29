@@ -1,7 +1,4 @@
 import re
-
-import json
-from typing import List
 from pydantic import BaseModel
 
 
@@ -10,7 +7,7 @@ class IgRecord(BaseModel):
     image_link: str
 
     def __repr__(self) -> str:
-        return f"ImageRecord(id='{self.id}', image_link='{self.image_link}')"
+        return f"IgRecord(id='{self.id}', image_link='{self.image_link}')"
 
     def is_instagram_story_url(self, url: str) -> bool:
         story_pattern = r'https?://(www\.)?instagram\.com/(stories|highlights)/.*'
@@ -18,9 +15,7 @@ class IgRecord(BaseModel):
 
     def is_instagram_url(self, url: str) -> bool:
         pattern = r'(https?:\/\/)?(www\.)?instagram\.com\/.*'
-        if (not self.is_instagram_story_url(url)
-                and bool(re.match(pattern, url)) and self.has_img_index_greater_than_one(url)):
-            return True
+        return bool(re.match(pattern, url)) and not self.is_instagram_story_url(url)
 
     def has_img_index_greater_than_one(self, url: str) -> bool:
         match = re.search(r'img_index=(\d+)', url)
