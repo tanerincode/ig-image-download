@@ -58,7 +58,7 @@ class AutomatedSyncer:
         )
 
         # Fetch data with progress bar
-        with tqdm(total=10, desc="Fetching Data") as pbar:
+        with tqdm(total=int(os.getenv("MAX_ITEMS", 20000)), desc="Fetching Data") as pbar:
             data = airtable_downloader.fetch_airtable_data(
                 table=table_name,
                 filter_column="Image Link",
