@@ -62,8 +62,8 @@ class AutomatedSyncer:
             data = airtable_downloader.fetch_airtable_data(
                 table=table_name,
                 filter_column="Image Link",
-                page_size=3,
-                max_items=10
+                page_size=int(os.getenv("PAGE_SIZE", 100)),
+                max_items=int(os.getenv("MAX_ITEMS", 20000))
             )
             pbar.update(len(data))
 
